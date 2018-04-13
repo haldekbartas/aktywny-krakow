@@ -75,5 +75,6 @@ input[disabled="disabled"] {
     display: inline-block;
     position: relative;
     width: 50%;
-    height: 50px;
+    text-align: center;
+    padding-top: 30px;
 }

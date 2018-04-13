@@ -66,12 +66,36 @@ aktywnyKrakow.controller("mController", function($scope) {
                 center:new google.maps.LatLng(50.0646, 19.9450),
                 zoom: 12,
             };
-            new google.maps.Map(document.getElementsByClassName(x)[0], mapProp);
+            var map = new google.maps.Map(document.getElementsByClassName(x)[0], mapProp);
+            var geocoder = new google.maps.Geocoder();
+            $('#submitAddress').on("click", function() {
+                $scope.geocodeAddress(geocoder, map);
+            });
+
+
             
         
        
         
     }
+    
+    $scope.geocodeAddress = function(geocoder, map) {
+        var address = $('#address').val();
+        
+        geocoder.geocode({'address' : address}, function(results, status) {
+            if(status === 'OK') {
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+            }
+            else {
+                alert("Pozyskiwanie lokacji nie powiodło się z przyczyny: " + status)
+            }
+        });
+    }
+    
     $scope.heightConfig = function(x) {
         
         var barHeight = $(".navbar").height();
