@@ -11,10 +11,11 @@ aktywnyKrakow.config(['$routeProvider', '$locationProvider', function ($routePro
     $routeProvider
         .when('/home', {
             templateUrl: 'views/home.html',
-            controller: 'MainController'
+            conrtoller : "mController"
         })
         .when('/panel', {
             templateUrl: 'views/panel.html',
+            controller: 'mController'
         })
         .when('/login', {
             templateUrl: 'views/login.html',
@@ -37,7 +38,7 @@ $scope.isActive = function(viewLocation) {
     return viewLocation === $location.path();
 };
       
-}])
+}]);
 
 
 // kontroler logowania
@@ -54,3 +55,38 @@ aktywnyKrakow.controller('LoginController', ['$scope', '$location', function ($s
     };
 
 }]);
+
+
+aktywnyKrakow.controller("mController", function($scope) {
+
+    $scope.mapConfig = function(x) {
+        
+            
+            var mapProp= {
+                center:new google.maps.LatLng(50.0646, 19.9450),
+                zoom: 12,
+            };
+            new google.maps.Map(document.getElementsByClassName(x)[0], mapProp);
+            
+        
+       
+        
+    }
+    $scope.heightConfig = function(x) {
+        
+        var barHeight = $(".navbar").height();
+        var height = ($(window).height()) - barHeight - 22;
+        $(x).css("height", height);
+        
+
+    
+    
+    
+    };
+    $(window).resize(function() {
+        $scope.heightConfig();
+    });
+});
+
+
+
