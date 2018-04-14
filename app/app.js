@@ -56,9 +56,10 @@ aktywnyKrakow.controller('LoginController', ['$scope', '$location', function ($s
 
 }]);
 
+// kontroler map
+aktywnyKrakow.controller("mController", function($scope, $location) {
 
-aktywnyKrakow.controller("mController", function($scope) {
-
+    // ustawienia map
     $scope.mapConfig = function(x) {
         
             
@@ -79,6 +80,7 @@ aktywnyKrakow.controller("mController", function($scope) {
         
     }
     
+    // wyszukiwanie adresu na mapie
     $scope.geocodeAddress = function(geocoder, map) {
         var address = $('#address').val();
         
@@ -87,8 +89,9 @@ aktywnyKrakow.controller("mController", function($scope) {
                 map.setCenter(results[0].geometry.location);
                 var marker = new google.maps.Marker({
                     map: map,
-                    position: results[0].geometry.location
+                    position: results[0].geometry.location,
                 });
+                //$scope.eventLocation = results[0].geometry.location;
             }
             else {
                 alert("Pozyskiwanie lokacji nie powiodło się z przyczyny: " + status)
@@ -96,19 +99,36 @@ aktywnyKrakow.controller("mController", function($scope) {
         });
     }
     
+    // ustawianie wysokosci map
     $scope.heightConfig = function(x) {
         
         var barHeight = $(".navbar").height();
         var height = ($(window).height()) - barHeight - 22;
         $(x).css("height", height);
-        
-
-    
-    
     
     };
+
+    /*
+    // ustawianie parametrow wyswietlania elementow panelu
+    $scope.formParams = function() {
+        var formHeight = $(".setEvent").height();
+        alert(formHeight);
+        if(formHeight < 300) {
+            $(".setEventHeader").css("font-size", "20px");
+        }
+    };
+    */
+
+    // zmiania parametrow wyswietlania elementow strony przy zmianie rozmiaru okna przegladarki
     $(window).resize(function() {
-        $scope.heightConfig();
+        if($location.path() == "/home") {
+            $scope.heightConfig(".mapHome");
+        }
+        else if($location.path() == "/panel") {
+            $scope.heightConfig(".mapPanel");
+        }
+        
+        //$scope.formParams();
     });
 });
 
