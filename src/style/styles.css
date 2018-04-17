@@ -1,3 +1,6 @@
+
+
+
 /* STYLE */
 
 body {
@@ -22,8 +25,9 @@ main {
 
 /* Pierwsza klatka animacji widoku głównego */
 
-main.ng-enter {
 
+main.ng-enter {
+    
     transition: 1s linear all;
     opacity: 0;
 }
@@ -48,3 +52,33 @@ input[disabled="disabled"] {
 }
 
 /*drugie style*/
+
+.panel {
+    width: 100%;
+    position: relative;
+}
+.home {
+    width: 100%;
+    position: relative;
+}
+.googleMap {
+    display: inline-block;
+    position: fixed;
+    width: 50%;
+    right: 0px;
+    
+}
+.map {
+    width: 100%;
+}
+.setEvent {
+    display: inline-block;
+    position: relative;
+    width: 50%;
+    text-align: center;
+    padding-top: 30px;
+}
+.setEventHeader {
+    font-size: 30px;
+    font-weight: bold;
+}

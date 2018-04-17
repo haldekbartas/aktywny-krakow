@@ -1,0 +1,19 @@
+<div class="panel" ng-controller="MapController">
+        <div class="setEvent">
+                <p class="setEventHeader">Dodaj nowe wydarzenie</p>
+                <p>
+                        <span>Miejsce wydarzenia: </span>
+                        <input id="address" type="text"/>
+                        <input id="submitAddress" type="button" value="Szukaj"/>
+                </p>
+        </div>
+        
+        <div class="googleMap">
+                <div class="mapPanel"></div>
+        </div>
+
+        {{ mapConfig("mapPanel") }}
+        
+        {{ heightConfig(".mapPanel") }}
+   
+</div>
