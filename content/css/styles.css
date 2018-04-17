@@ -68,6 +68,11 @@ input[disabled="disabled"] {
     right: 0px;
     
 }
+.googleMapMobile {
+    display: block;
+    position: relative;
+    width: 100%;
+}
 .map {
     width: 100%;
 }
@@ -78,7 +83,42 @@ input[disabled="disabled"] {
     text-align: center;
     padding-top: 30px;
 }
-.setEventHeader {
-    font-size: 30px;
-    font-weight: bold;
+.setEventMobile {
+    display: block;
+    width: 100%;
+    
+}
+.eventHeaderSmall {
+    font-size: 20px;
+}
+.VAlignParent {
+    display: inline-table;
+}
+.VAlignObject {
+    display: table-cell;
+    vertical-align: middle;
+}
+#description {
+    margin-left: 10px;
+}
+.eventType {
+    margin-right: 30px;
+}
+.locationSegment, .eventDetailsSegment {
+    margin-bottom: 30px;
+}
+
+.eventDetailsSegmentSmaller1 {
+    display: block;
+    margin-bottom: 20px;
+}
+.eventDetailsSegmentSmaller2 {
+    display: block;
+}
+.submitAddressSmall {
+    display: block;
+    margin: 20px auto 0px;
+}
+#descript {
+    margin-left: 5px;
 }
