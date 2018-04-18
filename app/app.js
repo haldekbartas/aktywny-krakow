@@ -19,6 +19,7 @@ var aktywnyKrakow = angular.module('aktywnyKrakow', ['ngRoute', 'ngAnimate','ang
 
 
 
+
 // plik konfiguracyjny
 aktywnyKrakow.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
@@ -58,10 +59,8 @@ aktywnyKrakow.controller('NavCtrl', ['$route', '$routeParams', '$location', '$sc
       
 }]);
 
-
 // kontroler logowania
 aktywnyKrakow.controller('LoginController', ['$scope', '$location', function ($scope, $location) {
-      
 
     // przypisanie wartości z pól input do zmiennych
     //    let mail = $scope.user.mail;
@@ -272,6 +271,3 @@ aktywnyKrakow.controller("mController", function($scope, $location) {
         $scope.formParams(); 
     }
 });
-
-
-
