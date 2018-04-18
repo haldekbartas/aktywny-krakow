@@ -60,7 +60,7 @@ aktywnyKrakow.controller('NavCtrl', ['$route', '$routeParams', '$location', '$sc
 
 
 // kontroler logowania
-aktywnyKrakow.controller('LoginController', ['$scope', '$location', function ($scope, $location ) {
+aktywnyKrakow.controller('LoginController', ['$scope', '$location', function ($scope, $location) {
       
 
     // przypisanie wartości z pól input do zmiennych
