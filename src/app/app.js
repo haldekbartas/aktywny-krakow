@@ -5,7 +5,9 @@ import angularCSS from 'angular-css';
 import navCtrl from './controllers/navCtrl';
 import loginCtlr from './controllers/loginCtrl';
 import mapCtlr from './controllers/mapCtrl';
-
+import EventRepository from './events/event_repository';
+import CurrentUserContext from './system/user_context';
+import Authorization from './system/authorization';
 
 import '../style/styles.css';
 
@@ -48,10 +50,50 @@ function appConfig ($routeProvider, $locationProvider) {
 
 const MODULE_NAME = 'app';
 
+var config = {
+    apiKey: "AIzaSyDHoIEAyH93jOKoyML2dAKB_1OrrEZF9yk",
+    authDomain: "civil-envoy-486.firebaseapp.com",
+    databaseURL: "https://civil-envoy-486.firebaseio.com",
+    projectId: "civil-envoy-486",
+    storageBucket: "civil-envoy-486.appspot.com",
+    messagingSenderId: "952396161108"
+};
+
+firebase.initializeApp(config);
+
+
+const userContext = new CurrentUserContext();
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        userContext.authenticate(user);
+        console.log(user);
+    } else {
+        console.log('signed out');
+    }
+});
+
+
+
+const provider = new firebase.auth.GoogleAuthProvider();
+
+const authorization = new Authorization(firebase.auth(), provider);
+
+const database = firebase.database();
+
+const eventRepository = new EventRepository(database, userContext);
+
+
 angular.module(MODULE_NAME, [ngRoute, ngAnimate, angularCSS])
+   .factory('eventRepository', function($rootScope) {
+        return eventRepository;
+   })
+   .factory('authorization', function() {
+        return authorization;
+   })
   .config(['$routeProvider', '$locationProvider', appConfig])
   .controller('NavController', navCtrl)
-  .controller('LoginController', loginCtlr)
-  .controller('MapController', mapCtlr);
+  .controller('LoginController', ['$scope', '$location', 'authorization', loginCtlr])
+  .controller('MapController', ['$scope', '$location', 'eventRepository', mapCtlr]);
 
 export default MODULE_NAME;

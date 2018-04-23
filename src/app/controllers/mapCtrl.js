@@ -1,11 +1,11 @@
 import $ from 'jquery';
 
 // kontroler map
-function MapController ($scope, $location) {
-
+function MapController ($scope, $location, eventRepository) {
+    var geocoder= new google.maps.Geocoder();
+    console.log(geocoder);
     // ustawienia map
     $scope.mapConfig = function(x) {
-
 
         var mapProp= {
             center:new google.maps.LatLng(50.0646, 19.9450),
@@ -13,29 +13,25 @@ function MapController ($scope, $location) {
         };
 
         var map = new google.maps.Map(document.getElementsByClassName(x)[0], mapProp);
-        var geocoder = new google.maps.Geocoder();
-        $('#submitAddress').on("click", function() {
-            $scope.geocodeAddress(geocoder, map);
-        });
 
-
-
-
-
-
+        $scope.map = map;
+        // $('#submitAddress').on("click", function() {
+        //     $scope.geocodeAddress(geocoder, map);
+        // });
     }
+    $scope.addressToQuery = "";
 
     // wyszukiwanie adresu na mapie
-    $scope.geocodeAddress = function(geocoder, map) {
-        var address = $('#address').val();
+    $scope.geocodeAddress = function() {
 
-        geocoder.geocode({'address' : address}, function(results, status) {
+        geocoder.geocode({'address' : $scope.addressToQuery}, function(results, status) {
             if(status === 'OK') {
-                map.setCenter(results[0].geometry.location);
+                $scope.map.setCenter(results[0].geometry.location);
                 var marker = new google.maps.Marker({
-                    map: map,
+                    map: $scope.map,
                     position: results[0].geometry.location,
                 });
+                $scope.event.address = "Kraków, Rynek główny";
                 //$scope.eventLocation = results[0].geometry.location;
             }
             else {
@@ -75,6 +71,25 @@ function MapController ($scope, $location) {
 
         //$scope.formParams();
     });
+
+    // kategorie wydarzeń
+    $scope.eventTypes = [
+        { name: "Chill-out" },
+        { name: "Sport "}
+    ];
+
+    $scope.sendData = function() {
+        console.log(eventRepository);
+        $scope.event.type = $scope.event.type.name;
+        eventRepository.addEvent($scope.event);
+        console.log($scope.event);
+    };
+
+    $scope.event = {
+        type: "",
+        name: "",
+        description: "",
+    }
 }
 
-export default ['$scope', '$location', MapController];
+export default MapController;
