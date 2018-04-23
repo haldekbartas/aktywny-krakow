@@ -51,12 +51,12 @@ function appConfig ($routeProvider, $locationProvider) {
 const MODULE_NAME = 'app';
 
 var config = {
-    apiKey: "AIzaSyDHoIEAyH93jOKoyML2dAKB_1OrrEZF9yk",
-    authDomain: "civil-envoy-486.firebaseapp.com",
-    databaseURL: "https://civil-envoy-486.firebaseio.com",
-    projectId: "civil-envoy-486",
-    storageBucket: "civil-envoy-486.appspot.com",
-    messagingSenderId: "952396161108"
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: ""
 };
 
 firebase.initializeApp(config);
