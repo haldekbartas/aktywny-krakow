@@ -61,7 +61,7 @@ input[disabled="disabled"] {
     position: fixed;
     width: 50%;
     right: 0px;
-    
+
 }
 .googleMapMobile {
     display: block;
@@ -81,7 +81,7 @@ input[disabled="disabled"] {
 .setEventMobile {
     display: block;
     width: 100%;
-    
+
 }
 .eventHeaderSmall {
     font-size: 20px;

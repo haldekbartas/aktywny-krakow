@@ -1,3 +1,8 @@
-# Aktywny-Krakow
+### Aktywny Kraków
 
-Single Page Application for SPA Programming assignment. 
+
+
+## Quickstart
+- `npm install`
+- `npm start`
+- `go to http://0.0.0.0:8080`

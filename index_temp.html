@@ -1,0 +1,168 @@
+<html>
+  <head>
+    <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
+
+  </head>
+  <body>
+    <h1>Hello</h1>
+    <button id="loginWithGoogle">LoginWithGoogle</button>
+    <input id="eventName" type="text"/>
+    <button id="addEvent">addEvent</button>
+    <ul id="eventList">
+
+    </ul>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDHoIEAyH93jOKoyML2dAKB_1OrrEZF9yk",
+            authDomain: "civil-envoy-486.firebaseapp.com",
+            databaseURL: "https://civil-envoy-486.firebaseio.com",
+            projectId: "civil-envoy-486",
+            storageBucket: "civil-envoy-486.appspot.com",
+            messagingSenderId: "952396161108"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <script>
+        var loginWithGoogle = document.getElementById('loginWithGoogle');
+
+        loginWithGoogle.addEventListener('click', function(e){
+           handleGoogleAuth();
+        });
+
+        var database = firebase.database();
+
+        var CurrentUserContext = function() {
+            return {
+                _id: undefined,
+                authenticate: function(userId) {
+                    this._id = userId;
+                },
+                getCurrentUserId: function () {
+                    return this._id;
+                }
+            }
+        };
+
+        var getNextKey = function () {
+            var eventId = firebase.database().ref().child('events').push().key;
+            return eventId;
+        };
+
+        var EventsRepository = function(db, userContext) {
+            return {
+              addEvent: function(name) {
+                  var authorId = userContext.getCurrentUserId();
+
+                  var event = {
+                      name: name,
+                      foo: "param_value"
+                  }
+                  var id = getNextKey();
+                  db.ref('users/' + authorId + '/' + id).set(event);
+                  db.ref('events/' + id).set(event);
+              }
+            };
+        };
+
+
+        var userContext = new CurrentUserContext();
+        var eventsRepository = new EventsRepository(firebase.database(), userContext);
+
+
+        var nameInput = document.getElementById('eventName');
+        var addEventButton = document.getElementById('addEvent');
+
+        addEventButton.addEventListener('click', function(e){
+
+            if (!userContext.getCurrentUserId()) {
+                throw Error("You need to be authenticated in order to add events");
+            }
+
+            var name = nameInput.value;
+
+            eventsRepository.addEvent(name);
+
+            console.log('i am done');
+        });
+
+        loginWithGoogle.addEventListener('click', function(e){
+            handleGoogleAuth();
+        });
+
+        var provider = new firebase.auth.GoogleAuthProvider();
+
+        var handleGoogleAuth = function() {
+            firebase.auth().signInWithPopup(provider).then(function(result) {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                var token = result.credential.accessToken;
+                // The signed-in user info.
+                var user = result.user;
+                // console.log(user);
+                // ...
+            }).catch(function(error) {
+                console.log(error);
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                // ...
+            });
+        }
+
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                userContext.authenticate(user.uid);
+                // User is signed in.
+                var displayName = user.displayName;
+                var email = user.email;
+                var emailVerified = user.emailVerified;
+                var photoURL = user.photoURL;
+                var isAnonymous = user.isAnonymous;
+                var uid = user.uid;
+                var providerData = user.providerData;
+                // ...
+            } else {
+                // User is signed out.
+                // ...
+            }
+        });
+
+
+    </script>
+    <script>
+        var allEvents = firebase.database().ref('events/');
+        var ulEventList = document.getElementById('eventList');
+        var clearList = function() {
+            ulEventList.innerHTML = "";
+        }
+        allEvents.on('value', function(snapshot) {
+            clearList();
+            var eventList = Object.values(snapshot.val());
+            var template = [
+                '<li>',
+                  '__name__',
+                '</li>'
+            ];
+
+
+            eventList
+                .map(function(item) {
+                    return template.join('').replace('__name__', item.name);
+                })
+                .forEach(function(html) {
+                    ulEventList.insertAdjacentHTML("beforeend", html);
+                })
+            ;
+
+            console.log(eventList);
+        });
+    </script>
+  </body>
+</html>
