@@ -51,13 +51,13 @@ function appConfig ($routeProvider, $locationProvider) {
 const MODULE_NAME = 'app';
 
 var config = {
-    apiKey: "",
-    authDomain: "",
-    databaseURL: "",
-    projectId: "",
-    storageBucket: "",
-    messagingSenderId: ""
-};
+    apiKey: "AIzaSyB9Is-rNsWgM-V1EexcJQeq0babWrO_xYk",
+    authDomain: "aktywny-krakow-ae725.firebaseapp.com",
+    databaseURL: "https://aktywny-krakow-ae725.firebaseio.com",
+    projectId: "aktywny-krakow-ae725",
+    storageBucket: "aktywny-krakow-ae725.appspot.com",
+    messagingSenderId: "525000600389"
+  };
 
 firebase.initializeApp(config);
 
