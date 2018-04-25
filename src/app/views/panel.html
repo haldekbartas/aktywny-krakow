@@ -1,0 +1,51 @@
+<div class="panel" ng-controller="MapController">
+
+        <form class="setEvent" name="eventForm">
+                <h2 class="setEventHeader">Dodaj nowe wydarzenie</h2>
+                <p class="locationSegment">
+
+                        <span class="addressDescript">Miejsce: </span>
+                        <input id="address" type="text" ng-model="addressToQuery"/>
+                        <input id="submitAddress" type="button" value="Szukaj" ng-click="geocodeAddress()"/>
+                </p>
+                <p class="eventDetailsSegment">
+                        <span class="EDSBreak1">
+                                <span>Kategoria: </span>
+                                <select class="eventType" ng-model="event.type"
+                                        ng-options="x.name for x in eventTypes" required>
+                                        <option value="">-- Wybierz kategorię --</option>
+                                </select>
+                        </span>
+                        <span class="EDSBreak2">
+                                <span>Nazwa: </span>
+                                <input id="eventName" type="text" ng-model="event.name" required/>
+                        </span>
+                </p>
+                <p class="VAlignParent">
+                        <span class="VAlignObject">Opis: </span>
+                        <textarea id="descript" rows="5" cols="55"
+                                  placeholder="W tym polu opisz dodawane wydarzenie" ng-model="event.description" required></textarea>
+                </p>
+                <p>
+                        <span>Data i czas: </span>
+                        <input type="datetime-local" ng-model="event.dateTimeEvent" min="new Date()" required/>
+                </p>
+                <p>
+                        <span>Liczba osób: </span>
+                        <input type="number" ng-model="event.personsQuantityEvent" required/>
+                </p>
+                <p>
+                        <button ng-click="sendData()" >Dodaj wydarzenie</button>
+                </p>
+
+        </form>
+
+        <div class="googleMap">
+                <div class="mapPanel"></div>
+        </div>
+
+        {{ mapConfig("mapPanel") }}
+
+        {{ heightConfig(".mapPanel") }}
+
+</div>
