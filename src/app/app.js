@@ -10,6 +10,7 @@ import CurrentUserContext from './system/user_context';
 import Authorization from './system/authorization';
 
 import '../style/styles.css';
+import '../style/loginstyle.css';
 
 // let app = () => {
 //   return {
