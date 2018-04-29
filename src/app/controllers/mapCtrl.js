@@ -7,10 +7,11 @@ function MapController ($scope, $location, eventRepository) {
     // ustawienia map
     $scope.mapConfig = function(x) {
 
-        var mapProp= {
-            center:new google.maps.LatLng(50.0646, 19.9450),
-            zoom: 12,
-        };
+      var center = $scope.map ? $scope.map.center : new google.maps.LatLng(50.0646, 19.9450);
+      var mapProp= {
+        center: center,
+        zoom: 12,
+      };
 
         var map = new google.maps.Map(document.getElementsByClassName(x)[0], mapProp);
 
@@ -25,13 +26,15 @@ function MapController ($scope, $location, eventRepository) {
     $scope.geocodeAddress = function() {
 
         geocoder.geocode({'address' : $scope.addressToQuery}, function(results, status) {
+            var result = results[0];
+            var location = result.geometry.location;
             if(status === 'OK') {
-                $scope.map.setCenter(results[0].geometry.location);
+                $scope.map.setCenter(location);
                 var marker = new google.maps.Marker({
                     map: $scope.map,
-                    position: results[0].geometry.location,
+                    position: location,
                 });
-                $scope.event.address = "Kraków, Rynek główny";
+                $scope.event.address = result.formatted_address;
                 //$scope.eventLocation = results[0].geometry.location;
             }
             else {
