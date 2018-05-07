@@ -1,9 +1,3 @@
-.login-container {
-  align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #f5f5f5;
-}
 
 .form-signin {
   width: 100%;
@@ -32,7 +26,13 @@
   margin-bottom: 10px;
 
 }
-.googlelogin button[]
+.form-signin button[type="gglpopup"] {
+  background: #d34836
+}
+.form-signin button[type="fbpopup"] {
+  background: #3b5998
+}
+/*.googlelogin button[type="fbpopup"] ----> ??*/
 
 
 /* Zaznaczenie textboxów */

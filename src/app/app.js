@@ -77,6 +77,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 
 const provider = new firebase.auth.GoogleAuthProvider();
+//const provider = new firebase.auth.FacebookAuthProvider();
 
 const authorization = new Authorization(firebase.auth(), provider);
 
