@@ -6,6 +6,7 @@
 body {
     font-family: Helvetica;
     margin: 0;
+    background-color: #f2f2f2;
 }
 
 h1,
@@ -54,7 +55,6 @@ input[disabled="disabled"] {
 /*drugie style*/
 
 .panel {
-    width: 100%;
     position: relative;
 }
 .home {
@@ -71,14 +71,125 @@ input[disabled="disabled"] {
 .map {
     width: 100%;
 }
+.navbar {
+    background: #F06;
+    height: 8vh;
+}
+/*w3c styling*/
+
+input[type=text],
+[type=number],
+[type=datetime-local],
+select,
+textarea {
+    width: 50%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+.addEvent {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    margin: 30px auto;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+#submitAddress {
+    background-color: gray;
+    color: white;
+    padding: 10px 30px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+}
+
 .setEvent {
     display: inline-block;
     position: relative;
     width: 50%;
     text-align: center;
-    padding-top: 30px;
+    padding: 0 20px;
+    height: 92vh;
+    border-radius: 5px;
+    height:100%;
 }
+
+
 .setEventHeader {
     font-size: 30px;
     font-weight: bold;
+    margin: 1vh auto;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+
+@media screen and (max-width: 600px) {
+
+    input[type=text],
+    [type=number],
+    [type=datetime-local],
+    select,
+    textarea {
+        width: 90%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+
+    }
+    .col-25,
+    .col-75,
+    input[type=submit] {
+        width: 100%;
+        margin-top: 10px;
+    }
+    .setEvent {
+        height: 100%;
+    }
+    .navbar {
+        height: auto;
+    }
+  
 }
