@@ -12,10 +12,10 @@ function LoginController ($scope, $location, authorization) {
     };
 
 //logowanie za pomocą facebooka
-    /*
+
     $scope.loginWithFacebook = function() {
         authorization.handleFacebookAuth();
-    */
+      }
 
 
 // zmiana widoku po zalogowaniu na stronę główną

@@ -76,10 +76,10 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 
 
-const provider = new firebase.auth.GoogleAuthProvider();
-//const provider = new firebase.auth.FacebookAuthProvider();
+const providergoogle = new firebase.auth.GoogleAuthProvider();
+const providerfacebook = new firebase.auth.FacebookAuthProvider();
 
-const authorization = new Authorization(firebase.auth(), provider);
+const authorization = new Authorization(firebase.auth(), providergoogle, providerfacebook);
 
 const database = firebase.database();
 
