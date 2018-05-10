@@ -187,9 +187,19 @@ input[type=submit] {
     }
     .setEvent {
         height: 100%;
+          width: 100%;
     }
     .navbar {
         height: auto;
+    }
+      .panel{
+          width:100vw;
+        display: block;
+    }
+    .googleMap{
+        position: relative;
+           width:100vw;
+        display: block;
     }
   
 }
