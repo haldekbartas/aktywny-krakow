@@ -93,6 +93,50 @@ function MapController ($scope, $location, eventRepository) {
         name: "",
         description: "",
     }
+
+    
+
+    
+    //definiowanie listy wydarzen
+    $scope.getEventList = function() {
+        $scope.eventList = [];
+        
+        
+        var eventNr = "";
+        firebase.database().ref().child("events").on("child_added", snap => {
+            var event = [];
+            alert("works!!!");
+            snap.forEach(function(child) {
+                   
+                var feature = child.val();
+                event.push(feature);
+                    
+                    
+                    
+            });
+            alert("k " + snap.key);
+            alert("nr " + eventNr);
+            if(snap.key != eventNr){
+                var eventTag = "<div class='event'>" + event[2] + "</div>";
+                $(".eventList").append(eventTag);
+                eventNr = snap.key;
+            }
+            
+            
+            
+                
+                
+        });
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+    
 }
 
 export default MapController;

@@ -85,6 +85,7 @@ const database = firebase.database();
 const eventRepository = new EventRepository(database, userContext);
 
 
+
 angular.module(MODULE_NAME, [ngRoute, ngAnimate, angularCSS])
    .factory('eventRepository', function($rootScope) {
         return eventRepository;

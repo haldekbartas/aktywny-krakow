@@ -82,3 +82,7 @@ input[disabled="disabled"] {
     font-size: 30px;
     font-weight: bold;
 }
+.eventList {
+    display: inline-block;
+    width: 50%;
+}
