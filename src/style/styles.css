@@ -144,46 +144,7 @@ input[type=submit] {
     font-weight: bold;
 
 }
-p {
-    margin-bottom: 0px;
-}
-.eventList {
-    display: inline-block;
-    width: 50%;
-    
-}
 
-.event {
-    position: relative;
-    width: 100%;
-    border: 1px solid black;
-    padding: 10px;
-    
-
-}
-.name {
-    position: absolute;
-    display: inline-block;
-    left: 10px;
-    font-weight: bold;
-}
-.type {
-    position: absolute;
-    display: inline-block;
-    right: 10px;
-}
-.place {
-    display: inline-block;
-    margin-top: 40px;
-}
-.lastRow {
-    position: relative;
-}
-.signUp {
-    position: absolute;
-    display: inline-block;
-    right: 0px;
-}
 
 
 
@@ -199,6 +160,12 @@ p {
     margin-top: 6px;
 }
 
+.col-100 {
+    float: left;
+    width: 100%;
+    margin-top: 6px;
+}
+
 /* Clear floats after the columns */
 
 .row:after {
@@ -206,6 +173,116 @@ p {
     display: table;
     clear: both;
 }
+
+/*Style listy */
+
+.listCol-25 {
+    float: left;
+    width: 25%;
+}
+
+.Listcol-75 {
+    float: left;
+    width: 75%;
+}
+.Listcol-100 {
+    float: left;
+    width: 100%;
+}
+.name {
+    display: inline-block;
+    font-weight: bold;
+    font-size:3vh;
+    padding-left:2vw;
+    color:#11742D;
+}
+.type {
+    padding-left:2vw;
+    margin-top: 0.1vh;
+    
+}
+
+.sportIcon{ 
+  background-image: url('../public/img/bike.png');
+  position:absolute;
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
+  padding: 50px 50px;
+    right:3px;
+    }
+
+.chillIcon{ 
+  background-image: url('../public/img/friends.png');
+  position:absolute;
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
+  padding: 50px 50px;
+    right:3px;
+    }
+    
+.description{
+        padding-left:2vw;
+        margin-bottom: 2vh;
+        margin-top: 1vh;
+        overflow: auto;
+        max-height:13vh;
+        max-width: 40vw;
+}
+.place {
+    padding-left:2vw;
+    margin-top:1vh;
+   
+}
+.date{
+    padding-left:2vw;
+    margin-top:1vh;
+}
+
+
+p {
+   margin: 0 0;
+    padding: 0 0;
+}
+
+.eventList {
+    display: inline-block;
+    width: 50%;
+    overflow: auto;
+    max-height:90vh;
+}
+
+.event {
+    position: relative;
+    width: 90%;
+    margin: 2vh auto;
+    background-color:#F0F0F0;
+    box-shadow: 5px 10px 5px 0px rgba(0,0,0,0.75);
+    padding: 10px;
+
+    }
+
+
+.signUp {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    margin: 30px auto;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    position: absolute;
+    display: inline-block;
+    right: 2vw;
+    bottom: 2vh;
+}
+
+.rowHeader{
+    border-radius: 5%;
+     border-bottom: 4px outset  #4CAF50;
+     width:99%;
+}
+
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 
@@ -243,6 +320,29 @@ p {
            width:100vw;
         display: block;
     }
+    .eventList {
+    display: block;
+        margin: 0 auto;
+    width: 100%;
+        max-height: 100vh;
+    }
+    .description{
+        max-width:80vw;
+    }
+    .signUp{
+    position: inherit;
+    display: block;
+    float:inherit;
+    margin: 10px auto;
+    }
+    .btn-wide{
+        display:block;
+        width:100%;
+          }
+    
+
+    
+
   
 }
 
