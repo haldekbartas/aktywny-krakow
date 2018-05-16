@@ -86,7 +86,7 @@ function MapController ($scope, $location, eventRepository) {
     // kategorie wydarzeń
     $scope.eventTypes = [
         { name: "Chill-out" },
-        { name: "Sport "}
+        { name: "Sport"}
     ];
 
     $scope.event = {
@@ -126,19 +126,57 @@ function MapController ($scope, $location, eventRepository) {
             if(checkEvent) {
                 buttonTitle = "Wypisz się";
             }
+            
             else {
                 buttonTitle = "Zapisz się";
                 if(eventObj.signed == eventObj.personsQuantityEvent) {
                     $("." + snap.key).attr("disabled", "disabled");
                 }
             }
-
+          
+              if(eventObj.type == "Chill-out"){
+               var iconClass = "chillIcon";
+            }
+            else{
+                var iconClass = "sportIcon";
+            }
+                    
+                  
+            var content =
+            "<div class='row rowHeader'>" + 
+            "<div class='listCol-75'>" + 
+            "<p class='name'>" + eventObj.name + "</p>" + 
+            "<p class='type'>" + eventObj.type + "</p>" +  
+            "</div>" +
+            "<div class='listCol-25'>"+
+            "<div class='"+iconClass +"'>" + "</div>" +
+            "</div>"+ "</div>" +
+                
+            "<div class='row'>" + 
+            "<div class='listCol-100'>" + 
+            "<div class='description'>" + eventObj.description + "</div>"+ 
+            "</div>" + "</div>"+
+                
+            "<div class='row'>" + 
+            "<div class='listCol-100'>" + 
+            "<p class='place'>Miejsce: " + eventObj.address + "</p>" +
+            "</div>" + "</div>"+
+                
+            "<div class='row'>" + 
+            "<div class='listCol-100'>" + 
+            "<p class='date'>Data i godzina:  " + eventObj.date  + ",     " + eventObj.time  + "</p>" +
+            "</div>" + "</div>"+
+                
+            "<div class='row'>" + 
+            "<div class='listCol-75'>" + 
+            "<p class='place'>Liczba zapisanych osób: "+  "<span class='quan" + snap.key + "'>" + eventObj.signed + "</span>" + "/" + eventObj.personsQuantityEvent +"</p>" + "</div>" +
+            "<div class='listCol-25 btn-wide'>"+
+            "<button class='signUp " + snap.key + "'>" + buttonTitle + "</button></div>";   
+            "</div>"+"</div>" 
             
-            var content = "<p><span class='name'>" + eventObj.name + "</span><span class='type'>" + eventObj.type +
-                "</span></p>" + "<p class='place'>Miejsce: " + eventObj.address + "</p><p>Opis: " + eventObj.description + "</p><p>Data: " +
-                eventObj.date + "<p>Czas: " + eventObj.time + "</p>" +
-                "<p>Ilość zapisanych osób: <span class='quan" + snap.key + "'>" + eventObj.signed + "</span></p><div class='lastRow'><span>Maksymalna liczba osób: " +
-                eventObj.personsQuantityEvent + "</span><button class='signUp " + snap.key + "'>" + buttonTitle + "</button></div>";
+                
+                
+                
             
             
             var eventTag = "<div class='event tag" + snap.key + "' k='" + snap.key + "'>" + content + "</div>";
@@ -284,6 +322,10 @@ function MapController ($scope, $location, eventRepository) {
                 time: eventArray[6],
                 type: eventArray[7]
             }
+            
+       
+            
+            
             $scope.doCheckEvent(snap, eventObj);
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             
@@ -292,9 +334,7 @@ function MapController ($scope, $location, eventRepository) {
             
            
             
-            
-            
-            
+          
             
            
             
