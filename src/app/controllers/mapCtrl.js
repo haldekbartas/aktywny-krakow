@@ -105,7 +105,13 @@ function MapController ($scope, $location, eventRepository) {
         $scope.event.time = $scope.event.dateTimeEvent.getHours() + ":" +
         $scope.event.dateTimeEvent.getMinutes() + " " + ampm;
         
-        eventRepository.addEvent($scope.event);
+        if($scope.event.personsQuantityEvent < 1) {
+            alert("W wydarzeniu wziąć udział conajmniej jedna osoba");
+        }
+        else {
+            eventRepository.addEvent($scope.event);
+        }
+        
         
     };
 
