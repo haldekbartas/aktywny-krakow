@@ -24,9 +24,15 @@ function MapController ($scope, $location, eventRepository) {
     $scope.addressToQuery = "";
 
     // wyszukiwanie adresu na mapie
-    $scope.geocodeAddress = function() {
-
-        geocoder.geocode({'address' : $scope.addressToQuery}, function(results, status) {
+    $scope.geocodeAddress = function(addrs) {
+        if(addrs == "") {
+            addrs = $scope.addressToQuery;
+        }
+        
+        
+        
+        geocoder.geocode({'address' : addrs}, function(results, status) {
+            
             var result = results[0];
             var location = result.geometry.location;
             if(status === 'OK') {
@@ -42,6 +48,7 @@ function MapController ($scope, $location, eventRepository) {
                 alert("Pozyskiwanie lokacji nie powiodło się z przyczyny: " + status)
             }
         });
+        
     }
 
     // ustawianie wysokosci map
@@ -134,9 +141,15 @@ function MapController ($scope, $location, eventRepository) {
                 eventObj.personsQuantityEvent + "</span><button class='signUp " + snap.key + "'>" + buttonTitle + "</button></div>";
             
             
-            var eventTag = "<div class='event' k='" + snap.key + "'>" + content + "</div>";
+            var eventTag = "<div class='event tag" + snap.key + "' k='" + snap.key + "'>" + content + "</div>";
             
             var l = $(".event").length;
+
+            $(".tag" + snap.key).click(function() {
+                $scope.mapConfig("mapHome");
+                $scope.geocodeAddress(eventObj.address);
+                
+            });          
             
             $("." + snap.key).click(function() {
 
