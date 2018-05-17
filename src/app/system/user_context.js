@@ -10,10 +10,6 @@ var CurrentUserContext = function() {
         },
         getUser: function () {
             return this._user;
-        },
-        clear: function(){
-          this._id = undefined;
-          this._user = undefined;
         }
     }
 };
