@@ -5,6 +5,13 @@
   background: url(../public/img/grass.jpg) top left repeat;
     height: 100vh;
 }
+.logo-container{
+align-items: center;
+padding-top: 30vh;
+padding-bottom: 40px;
+background: url(../public/img/grass.jpg) top left repeat;
+  height: 30vh;
+}
 
 .form-signin {
   width: 100%;

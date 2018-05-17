@@ -1,8 +1,13 @@
 import $ from 'jquery';
 
 // kontroler map
-function MapController ($scope, $location, eventRepository) {
-    
+function MapController ($scope, $location, eventRepository, userContext) {
+
+console.log(userContext.getCurrentUserId());
+  // if (!userContext.getCurrentUserId()){
+  //   window.location.href="/login";
+  // }
+
     var geocoder= new google.maps.Geocoder();
     console.log(geocoder);
     // ustawienia map
@@ -97,15 +102,15 @@ function MapController ($scope, $location, eventRepository) {
             $scope.event.dateTimeEvent.getFullYear();
         $scope.event.time = $scope.event.dateTimeEvent.getHours() + ":" +
         $scope.event.dateTimeEvent.getMinutes() + " " + ampm;
-        
+
         eventRepository.addEvent($scope.event);
-        
+
     };
 
-    
-    
+
+
     $scope.doCheckEvent = function(snap, eventObj) {
-        
+
         var userId = eventRepository.getUserId();
         console.log("logged in as " + userId);
         firebase.database().ref("users/" + userId + "/").once('value').then(function(innerSnap){
@@ -126,23 +131,23 @@ function MapController ($scope, $location, eventRepository) {
                 }
             }
 
-            
+
             var content = "<p><span class='name'>" + eventObj.name + "</span><span class='type'>" + eventObj.type +
                 "</span></p>" + "<p class='place'>Miejsce: " + eventObj.address + "</p><p>Opis: " + eventObj.description + "</p><p>Data: " +
                 eventObj.date + "<p>Czas: " + eventObj.time + "</p>" +
                 "<p>Ilość zapisanych osób: <span class='quan" + snap.key + "'>" + eventObj.signed + "</span></p><div class='lastRow'><span>Maksymalna liczba osób: " +
                 eventObj.personsQuantityEvent + "</span><button class='signUp " + snap.key + "'>" + buttonTitle + "</button></div>";
-            
-            
+
+
             var eventTag = "<div class='event' k='" + snap.key + "'>" + content + "</div>";
-            
+
             var l = $(".event").length;
-            
+
             $("." + snap.key).click(function() {
 
                 $("." + snap.key).attr("disabled", "disabled");
                 var userId = eventRepository.getUserId();
-                
+
                 firebase.database().ref("users/" + userId + "/").once('value').then(function(innerSnap){
                     var checkEvent = false;
                     var ev;
@@ -152,24 +157,24 @@ function MapController ($scope, $location, eventRepository) {
                             ev = event;
                         }
                     });
-                    
-                    
+
+
                     if(checkEvent) {
-                        
+
                         firebase.database().ref("events/" + snap.key + "/signed/").once("value").then(function(val) {
                             var q = (val.val()) - 1;
-                            
+
                             eventRepository.signOffFromEvent(ev);
                             $("." + snap.key).text("Zapisz się");
 
-                            
+
                             $(".quan" + snap.key).text(q);
 
                             $("." + snap.key).removeAttr("disabled");
-            
-                            
+
+
                         });
-                        
+
                     }
                     else {
                         firebase.database().ref("events/").once('value').then(function(snapshot) {
@@ -183,21 +188,21 @@ function MapController ($scope, $location, eventRepository) {
                                 var q = (val.val()) + 1;
                                 eventRepository.signToEvent(event);
                                 $("." + snap.key).text("Wypisz się");
-                                
+
                                 $(".quan" + snap.key).text(q);
                                 $("." + snap.key).removeAttr("disabled");
                             });
-                            
+
                         });
 
-                        
+
                     }
 
 
 
-                
 
-                    
+
+
 
                 });
 
@@ -210,55 +215,55 @@ function MapController ($scope, $location, eventRepository) {
                     check = true;
                 }
 
-                
+
             }
 
-            
+
 
             if(!check) {
                 $(".eventList").append(eventTag);
             }
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            
-            
-        }); 
-        
-        
-        
-        
-        
-        
+
+
+        });
+
+
+
+
+
+
 
     };
 
-    
-    
-    
-    
 
-    
 
-    
-    
 
-    
+
+
+
+
+
+
+
+
     //definiowanie listy wydarzen
     $scope.getEventList = function() {
-        
+
         $scope.eventList = [];
-        
-        
-        
+
+
+
         firebase.database().ref().child("events").on("child_added", snap => {
             var eventArray = [];
-            
+
             snap.forEach(function(child) {
-                   
+
                 var feature = child.val();
                 eventArray.push(feature);
-                    
-                    
-                    
+
+
+
             });
 
             var eventObj = {
@@ -273,36 +278,36 @@ function MapController ($scope, $location, eventRepository) {
             }
             $scope.doCheckEvent(snap, eventObj);
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            
-            
-            
-            
-           
-            
-            
-            
-            
-            
-           
-            
-            
-            
-            
-            
-            
-                
-                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         });
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
     }
-    
-    
-    
+
+
+
 }
 
 export default MapController;

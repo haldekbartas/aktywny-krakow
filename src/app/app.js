@@ -26,6 +26,19 @@ import '../style/loginstyle.css';
 //   }
 // }
 
+
+var config = {
+    apiKey: "AIzaSyB9Is-rNsWgM-V1EexcJQeq0babWrO_xYk",
+    authDomain: "aktywny-krakow-ae725.firebaseapp.com",
+    databaseURL: "https://aktywny-krakow-ae725.firebaseio.com",
+    projectId: "aktywny-krakow-ae725",
+    storageBucket: "aktywny-krakow-ae725.appspot.com",
+    messagingSenderId: "525000600389"
+  };
+
+firebase.initializeApp(config);
+
+
 function appConfig ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 
@@ -45,34 +58,17 @@ function appConfig ($routeProvider, $locationProvider) {
             controllerAs: 'app'
         })
         .otherwise({
-            redirectTo: '/login'
+            redirectTo: '/panel'
         });
+
+
+
 }
 
 const MODULE_NAME = 'app';
 
-var config = {
-    apiKey: "AIzaSyB9Is-rNsWgM-V1EexcJQeq0babWrO_xYk",
-    authDomain: "aktywny-krakow-ae725.firebaseapp.com",
-    databaseURL: "https://aktywny-krakow-ae725.firebaseio.com",
-    projectId: "aktywny-krakow-ae725",
-    storageBucket: "aktywny-krakow-ae725.appspot.com",
-    messagingSenderId: "525000600389"
-  };
-
-firebase.initializeApp(config);
-
 
 const userContext = new CurrentUserContext();
-
-firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-        userContext.authenticate(user);
-        console.log(user);
-    } else {
-        console.log('signed out');
-    }
-});
 
 
 
@@ -87,16 +83,41 @@ const eventRepository = new EventRepository(database, userContext);
 
 
 
-angular.module(MODULE_NAME, [ngRoute, ngAnimate, angularCSS])
-   .factory('eventRepository', function($rootScope) {
+
+var app = angular.module(MODULE_NAME, [ngRoute, ngAnimate, angularCSS])
+   .factory('eventRepository', function() {
         return eventRepository;
    })
    .factory('authorization', function() {
         return authorization;
    })
+   .service('userContext', function(){
+        return userContext;
+   })
   .config(['$routeProvider', '$locationProvider', appConfig])
   .controller('NavController', navCtrl)
-  .controller('LoginController', ['$scope', '$location', 'authorization', loginCtlr])
-  .controller('MapController', ['$scope', '$location', 'eventRepository', mapCtlr]);
+  .controller('LoginController', ['$scope', '$location', 'authorization','userContext', loginCtlr])
+  .controller('MapController', ['$scope', '$location', 'eventRepository','userContext', mapCtlr])
+
+app.run(function($location) {
+  firebase.auth().onAuthStateChanged(function(user) {
+      console.log(user);
+      console.log('i am done')
+      if (user) {
+          userContext.authenticate(user);
+          $location.path("/home");
+          console.log(user);
+      } else {
+        userContext.clear();
+        console.log("it should redirect to /login");
+        if ((window.location.pathname != "/login")) {
+          $location.path('/login');
+        };
+  //      $location.path("/login");
+        console.log('signed out');
+
+      }
+  });
+});
 
 export default MODULE_NAME;
