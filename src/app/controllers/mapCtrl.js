@@ -88,7 +88,6 @@ function MapController ($scope, $location, eventRepository) {
     ];
 
     $scope.event = {
-        type: "",
         name: "",
         description: "",
         date: "",
