@@ -7,6 +7,7 @@ body {
     font-family: Helvetica;
     margin: 0;
     background-color: #f2f2f2;
+      background-color: #e3e3e3;
 }
 
 h1,
@@ -56,6 +57,7 @@ input[disabled="disabled"] {
 
 .panel {
     position: relative;
+    max-height:92vh;
 }
 .home {
     width: 100%;
@@ -113,6 +115,13 @@ input[type=submit] {
     border-radius: 4px;
     cursor: pointer;
     float: right;
+    transition:0.3s;
+}
+
+.addEvent:hover {
+    transition: 0.3s;
+    opacity: 0.85;
+
 }
 
 #submitAddress {
@@ -124,6 +133,11 @@ input[type=submit] {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+        transition: 0.3s;
+}
+#submitAddress:hover {
+    transition: 0.3s;
+    opacity: 0.8;
 
 }
 
@@ -133,16 +147,15 @@ input[type=submit] {
     width: 50%;
     text-align: center;
     padding: 0 20px;
-    height: 92vh;
+    height: 90vh;
     border-radius: 5px;
-    height:100%;
 }
 
 
 .setEventHeader {
     font-size: 30px;
     font-weight: bold;
-
+    margin: 1vh auto;
 }
 
 
@@ -234,7 +247,7 @@ input[type=submit] {
 .place {
     padding-left:2vw;
     margin-top:1vh;
-   
+    overflow:hidden;
 }
 .date{
     padding-left:2vw;
@@ -258,18 +271,24 @@ p {
     position: relative;
     width: 90%;
     margin: 2vh auto;
-    background-color:#F0F0F0;
-    box-shadow: 5px 10px 5px 0px rgba(0,0,0,0.75);
+    background-color:#F6F6F6;
+     background-color:#F9F9F9;
+    box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.6);
     padding: 10px;
-
+     transition: 0.3s;
     }
-
+.event:hover {
+     transition: 0.3s;
+    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.9);
+    background-color:#F9F9F9;
+     background-color:white;
+    }
 
 .signUp {
     background-color: #4CAF50;
     color: white;
-    padding: 12px 20px;
-    margin: 30px auto;
+    padding: 10px 20px;
+    margin: 5px auto;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -277,9 +296,13 @@ p {
     position: absolute;
     display: inline-block;
     right: 2vw;
-    bottom: 2vh;
+    bottom: 1vh;
+         transition: 0.3s;
 }
-
+.signUp:hover  {
+     transition: 0.3s;
+      opacity: 0.75;
+}
 .rowHeader{
     border-radius: 5%;
      border-bottom: 4px outset  #4CAF50;
