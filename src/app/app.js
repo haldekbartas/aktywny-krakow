@@ -68,7 +68,7 @@ const userContext = new CurrentUserContext();
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         userContext.authenticate(user);
-        console.log(user);
+
     } else {
         console.log('signed out');
     }
@@ -118,7 +118,7 @@ var app = angular.module(MODULE_NAME, [ngRoute, ngAnimate, angularCSS])
           };
           $location.path("/login");
           console.log('signed out');
-  
+
           }
       });
     });

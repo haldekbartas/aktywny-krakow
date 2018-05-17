@@ -11,12 +11,12 @@ function NavCtrl($route, $routeParams, $location, $scope) {
 
     $scope.logOut = function(){
       firebase.auth().signOut().then(function() {
-          // Sign-out successful.
+          // Sign-out successful
       }).catch(function(error) {
-          // An error happened.
+          console.log(error);
       });
     }
-
+    //pozwala na zczytanie danych użytkownika
     setTimeout(function(){
       var user = firebase.auth().currentUser;
       user.providerData.forEach(function (profile) {
