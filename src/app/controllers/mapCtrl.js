@@ -17,9 +17,7 @@ function MapController ($scope, $location, eventRepository) {
         var map = new google.maps.Map(document.getElementsByClassName(x)[0], mapProp);
 
         $scope.map = map;
-        // $('#submitAddress').on("click", function() {
-        //     $scope.geocodeAddress(geocoder, map);
-        // });
+        
     }
     $scope.addressToQuery = "";
 
@@ -275,7 +273,7 @@ function MapController ($scope, $location, eventRepository) {
             if(!check) {
                 $(".eventList").append(eventTag);
             }
-                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            
             
             
         }); 
@@ -358,6 +356,16 @@ function MapController ($scope, $location, eventRepository) {
         
         
         
+    }
+    
+    
+    if(window.location.pathname == "/home") {
+        $scope.mapConfig("mapHome");
+        $scope.heightConfig(".mapHome");
+    }
+    else if(window.location.pathname == "/panel") {
+        $scope.mapConfig("mapPanel");
+        $scope.heightConfig(".mapPanel");
     }
     
     
