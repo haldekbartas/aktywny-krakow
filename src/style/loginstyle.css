@@ -40,10 +40,10 @@ background: url(../public/img/grass.jpg) top left repeat;
   margin-bottom: 10px;
 
 }
-.form-signin button[type="gglpopup"] {
+#gglclick {
   background: #d34836
 }
-.form-signin button[type="fbpopup"] {
+#fbclick {
   background: #3b5998
 }
 /*.googlelogin button[type="fbpopup"] ----> ??*/

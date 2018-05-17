@@ -58,7 +58,7 @@ function appConfig ($routeProvider, $locationProvider) {
             controllerAs: 'app'
         })
         .otherwise({
-            redirectTo: '/panel'
+            redirectTo: '/login'
         });
 
 
@@ -111,9 +111,9 @@ app.run(function($location) {
         userContext.clear();
         console.log("it should redirect to /login");
         if ((window.location.pathname != "/login")) {
-          $location.path('/login');
+          window.location.href = "/login";
         };
-  //      $location.path("/login");
+        $location.path("/login");
         console.log('signed out');
 
       }
