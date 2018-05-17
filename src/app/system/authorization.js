@@ -1,43 +1,50 @@
 function Authorization(auth, providergoogle, providerfacebook) {
     return {
         handleGoogleAuth: function () {
-            auth.signInWithPopup(providergoogle).then(function (result) {
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                var token = result.credential.accessToken;
-                // The signed-in user info.
-                var user = result.user;
-                // console.log(user);
-                // ...
-            }).catch(function (error) {
-                console.log(error);
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                // The email of the user's account used.
-                var email = error.email;
-                // The firebase.auth.AuthCredential type that was used.
-                var credential = error.credential;
-                // ...
-            });
-        },
-        handleFacebookAuth: function(){
-            auth.signInWithPopup(providerfacebook).then(function(result) {
-               // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-               var token = result.credential.accessToken;
-               // The signed-in user info.
-               var user = result.user;
-               // ...
-              }).catch(function(error) {
-                console.log(error);
-               // Handle Errors here.
-               var errorCode = error.code;
-               var errorMessage = error.message;
-               // The email of the user's account used.
-               var email = error.email;
-               // The firebase.auth.AuthCredential type that was used.
-               var credential = error.credential;
-               // ...
+            const promise1 = new Promise((resolv, reject) => {
+              auth.signInWithPopup(providergoogle).then(function (result) {
+                  var user = result.user;
+
+                  console.log("whatever");
+                  resolv(user);
+              }).catch(function (error) {
+
+                  console.log(error);
+                  reject(error);
               });
+            });
+            return promise1;
+        },
+          handleFacebookAuth: function () {
+              const promise2 = new Promise((resolv, reject) => {
+                auth.signInWithPopup(providerfacebook).then(function (result) {
+                    var user = result.user;
+
+                    console.log("whatever");
+                    resolv(user);
+                }).catch(function (error) {
+
+                    console.log(error);
+                    reject(error);
+                });
+              });
+              return promise2;
+          },
+        handlePasswordAuth: function(loginCommand){
+          const promise3 = new Promise((resolv, reject) => {
+            auth.signInWithEmailAndPassword(loginCommand.email, loginCommand.password)
+            .then(function(result) {
+                var user = result.user;
+
+                console.log("whatever");
+                resolv(user);
+            }).catch(function (error) {
+
+                console.log(error);
+                reject(error);
+            });
+        });
+          return promise3;
         }
     };
 }

@@ -22,14 +22,13 @@ main {
 }
 
 
-
 /* ANIMACJE */
 
 /* Pierwsza klatka animacji widoku głównego */
 
 
 main.ng-enter {
-    
+
     transition: 1s linear all;
     opacity: 0;
 }
@@ -68,14 +67,21 @@ input[disabled="disabled"] {
     position: fixed;
     width: 50%;
     right: 0px;
-    
+
 }
 .map {
     width: 100%;
 }
 .navbar {
-    background: #F06;
-    height: 8vh;
+    background: #506060;
+    height: 9vh;
+    color: #036635;
+    align: right;
+
+}
+img.navbarimg {
+  max-width: 90px;
+  max-height: 90px;
 }
 /*w3c styling*/
 
@@ -215,10 +221,10 @@ input[type=submit] {
 .type {
     padding-left:2vw;
     margin-top: 0.1vh;
-    
+
 }
 
-.sportIcon{ 
+.sportIcon{
   background-image: url('../public/img/bike.png');
   position:absolute;
   background-size: 50px 50px;
@@ -227,7 +233,7 @@ input[type=submit] {
     right:3px;
     }
 
-.chillIcon{ 
+.chillIcon{
   background-image: url('../public/img/friends.png');
   position:absolute;
   background-size: 50px 50px;
@@ -235,7 +241,7 @@ input[type=submit] {
   padding: 50px 50px;
     right:3px;
     }
-    
+
 .description{
         padding-left:2vw;
         margin-bottom: 2vh;
@@ -365,10 +371,11 @@ p {
         display:block;
         width:100%;
           }
-    
 
-    
 
-  
+
+
+
 }
 
+}

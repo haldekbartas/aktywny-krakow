@@ -1,8 +1,13 @@
 import $ from 'jquery';
 
 // kontroler map
-function MapController ($scope, $location, eventRepository) {
-    
+function MapController ($scope, $location, eventRepository, userContext) {
+
+console.log(userContext.getCurrentUserId());
+  // if (!userContext.getCurrentUserId()){
+  //   window.location.href="/login";
+  // }
+
     var geocoder= new google.maps.Geocoder();
     console.log(geocoder);
     // ustawienia map
@@ -17,7 +22,7 @@ function MapController ($scope, $location, eventRepository) {
         var map = new google.maps.Map(document.getElementsByClassName(x)[0], mapProp);
 
         $scope.map = map;
-        
+
     }
     $scope.addressToQuery = "";
 
@@ -26,11 +31,11 @@ function MapController ($scope, $location, eventRepository) {
         if(addrs == "") {
             addrs = $scope.addressToQuery;
         }
-        
-        
-        
+
+
+
         geocoder.geocode({'address' : addrs}, function(results, status) {
-            
+
             var result = results[0];
             var location = result.geometry.location;
             if(status === 'OK') {
@@ -46,7 +51,7 @@ function MapController ($scope, $location, eventRepository) {
                 alert("Pozyskiwanie lokacji nie powiodło się z przyczyny: " + status)
             }
         });
-        
+
     }
 
     // ustawianie wysokosci map
@@ -101,21 +106,27 @@ function MapController ($scope, $location, eventRepository) {
             $scope.event.dateTimeEvent.getFullYear();
         $scope.event.time = $scope.event.dateTimeEvent.getHours() + ":" +
         $scope.event.dateTimeEvent.getMinutes() + " " + ampm;
-        
+<<<<<<< HEAD
+
         if($scope.event.personsQuantityEvent < 1) {
             alert("W wydarzeniu wziąć udział conajmniej jedna osoba");
         }
         else {
             eventRepository.addEvent($scope.event);
         }
-        
-        
+
+
+=======
+
+        eventRepository.addEvent($scope.event);
+
+>>>>>>> logfix
     };
 
-    
-    
+
+
     $scope.doCheckEvent = function(snap, eventObj) {
-        
+
         var userId = eventRepository.getUserId();
         console.log("logged in as " + userId);
         firebase.database().ref("users/" + userId + "/").once('value').then(function(innerSnap){
@@ -129,74 +140,71 @@ function MapController ($scope, $location, eventRepository) {
             if(checkEvent) {
                 buttonTitle = "Wypisz się";
             }
-            
+
             else {
                 buttonTitle = "Zapisz się";
                 if(eventObj.signed == eventObj.personsQuantityEvent) {
                     $("." + snap.key).attr("disabled", "disabled");
                 }
-            }
-          
+
               if(eventObj.type == "Chill-out"){
                var iconClass = "chillIcon";
             }
             else{
                 var iconClass = "sportIcon";
             }
-                    
-                  
+
+
             var content =
-            "<div class='row rowHeader'>" + 
-            "<div class='listCol-75'>" + 
-            "<p class='name'>" + eventObj.name + "</p>" + 
-            "<p class='type'>" + eventObj.type + "</p>" +  
+            "<div class='row rowHeader'>" +
+            "<div class='listCol-75'>" +
+            "<p class='name'>" + eventObj.name + "</p>" +
+            "<p class='type'>" + eventObj.type + "</p>" +
             "</div>" +
             "<div class='listCol-25'>"+
             "<div class='"+iconClass +"'>" + "</div>" +
             "</div>"+ "</div>" +
-                
-            "<div class='row'>" + 
-            "<div class='listCol-100'>" + 
-            "<div class='description'>" + eventObj.description + "</div>"+ 
+
+            "<div class='row'>" +
+            "<div class='listCol-100'>" +
+            "<div class='description'>" + eventObj.description + "</div>"+
             "</div>" + "</div>"+
-                
-            "<div class='row'>" + 
-            "<div class='listCol-100'>" + 
+
+            "<div class='row'>" +
+            "<div class='listCol-100'>" +
             "<p class='place'>Miejsce: " + eventObj.address + "</p>" +
             "</div>" + "</div>"+
-                
-            "<div class='row'>" + 
-            "<div class='listCol-100'>" + 
+
+            "<div class='row'>" +
+            "<div class='listCol-100'>" +
             "<p class='date'>Data i godzina:  " + eventObj.date  + ",     " + eventObj.time  + "</p>" +
             "</div>" + "</div>"+
-                
-            "<div class='row'>" + 
-            "<div class='listCol-75'>" + 
+
+            "<div class='row'>" +
+            "<div class='listCol-75'>" +
             "<p class='place'>Liczba zapisanych osób: "+  "<span class='quan" + snap.key + "'>" + eventObj.signed + "</span>" + "/" + eventObj.personsQuantityEvent +"</p>" + "</div>" +
             "<div class='listCol-25 btn-wide'>"+
-            "<button class='signUp " + snap.key + "'>" + buttonTitle + "</button></div>";   
-            "</div>"+"</div>" 
-            
-                
-                
-                
-            
-            
+            "<button class='signUp " + snap.key + "'>" + buttonTitle + "</button></div>";
+            "</div>"+"</div>"
+
+
+
+
+
+
             var eventTag = "<div class='event tag" + snap.key + "' k='" + snap.key + "'>" + content + "</div>";
-            
+
             var l = $(".event").length;
 
             $(".tag" + snap.key).click(function() {
                 $scope.mapConfig("mapHome");
                 $scope.geocodeAddress(eventObj.address);
-                
-            });          
-            
-            $("." + snap.key).click(function() {
+
+            });
 
                 $("." + snap.key).attr("disabled", "disabled");
                 var userId = eventRepository.getUserId();
-                
+
                 firebase.database().ref("users/" + userId + "/").once('value').then(function(innerSnap){
                     var checkEvent = false;
                     var ev;
@@ -206,24 +214,24 @@ function MapController ($scope, $location, eventRepository) {
                             ev = event;
                         }
                     });
-                    
-                    
+
+
                     if(checkEvent) {
-                        
+
                         firebase.database().ref("events/" + snap.key + "/signed/").once("value").then(function(val) {
                             var q = (val.val()) - 1;
-                            
+
                             eventRepository.signOffFromEvent(ev);
                             $("." + snap.key).text("Zapisz się");
 
-                            
+
                             $(".quan" + snap.key).text(q);
 
                             $("." + snap.key).removeAttr("disabled");
-            
-                            
+
+
                         });
-                        
+
                     }
                     else {
                         firebase.database().ref("events/").once('value').then(function(snapshot) {
@@ -237,21 +245,21 @@ function MapController ($scope, $location, eventRepository) {
                                 var q = (val.val()) + 1;
                                 eventRepository.signToEvent(event);
                                 $("." + snap.key).text("Wypisz się");
-                                
+
                                 $(".quan" + snap.key).text(q);
                                 $("." + snap.key).removeAttr("disabled");
                             });
-                            
+
                         });
 
-                        
+
                     }
 
 
 
-                
 
-                    
+
+
 
                 });
 
@@ -264,55 +272,68 @@ function MapController ($scope, $location, eventRepository) {
                     check = true;
                 }
 
-                
+
             }
 
-            
+
 
             if(!check) {
                 $(".eventList").append(eventTag);
             }
-            
-            
-            
-        }); 
-        
-        
-        
-        
-        
-        
+<<<<<<< HEAD
+
+
+
+        });
+
+
+
+
+
+
+=======
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+        });
+
+
+
+
+
+
+>>>>>>> logfix
 
     };
 
-    
-    
-    
-    
 
-    
 
-    
-    
 
-    
+
+
+
+
+
+
+
+
     //definiowanie listy wydarzen
     $scope.getEventList = function() {
-        
+
         $scope.eventList = [];
-        
-        
-        
+
+
+
         firebase.database().ref().child("events").on("child_added", snap => {
             var eventArray = [];
-            
+
             snap.forEach(function(child) {
-                   
+
                 var feature = child.val();
                 eventArray.push(feature);
-                    
-                    
-                    
+
+
+
             });
 
             var eventObj = {
@@ -325,39 +346,64 @@ function MapController ($scope, $location, eventRepository) {
                 time: eventArray[6],
                 type: eventArray[7]
             }
-            
-       
-            
-            
+<<<<<<< HEAD
+
+
+
+
             $scope.doCheckEvent(snap, eventObj);
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            
-            
-            
-            
-           
-            
-          
-            
-           
-            
-            
-            
-            
-            
-            
-                
-                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======
+            $scope.doCheckEvent(snap, eventObj);
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> logfix
         });
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
     }
-    
-    
+<<<<<<< HEAD
+
+
     if(window.location.pathname == "/home") {
         $scope.mapConfig("mapHome");
         $scope.heightConfig(".mapHome");
@@ -366,9 +412,14 @@ function MapController ($scope, $location, eventRepository) {
         $scope.mapConfig("mapPanel");
         $scope.heightConfig(".mapPanel");
     }
-    
-    
-    
+
+
+
+=======
+
+
+
+>>>>>>> logfix
 }
 
 export default MapController;
