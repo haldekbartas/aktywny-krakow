@@ -3,6 +3,7 @@ import ngRoute from 'angular-route';
 import ngAnimate from 'angular-animate';
 import angularCSS from 'angular-css';
 import navCtrl from './controllers/navCtrl';
+import statsCtrl from './controllers/statsCtrl';
 import loginCtlr from './controllers/loginCtrl';
 import mapCtlr from './controllers/mapCtrl';
 import EventRepository from './events/event_repository';
@@ -43,6 +44,10 @@ function appConfig ($routeProvider, $locationProvider) {
             template: require('./views/login.html'),
             controller: 'LoginController',
             controllerAs: 'app'
+        })
+        .when('/stats', {
+            template: require('./views/stats.html'),
+            controller: 'StatsController'
         })
         .otherwise({
             redirectTo: '/login'
@@ -99,6 +104,7 @@ var app = angular.module(MODULE_NAME, [ngRoute, ngAnimate, angularCSS])
    })
   .config(['$routeProvider', '$locationProvider', appConfig])
   .controller('NavController', navCtrl)
+  .controller('StatsController', ['$scope', 'eventRepository', statsCtrl])
   .controller('LoginController', ['$scope', '$location', 'authorization','userContext', loginCtlr])
   .controller('MapController', ['$scope', '$location', 'eventRepository','userContext', mapCtlr])
 
