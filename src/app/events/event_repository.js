@@ -29,12 +29,12 @@ var EventRepository = function(db, currentUserContext) {
         filterEvents: function (events) {
           return new Promise((resolve, reject) => {
             let sportEvents = [], chillOutEvents = [];
-            
+
             try {
               for (let i in events) {
                 const event = events[i];
                 switch (event.type) {
-                  case 'Sport ':
+                  case 'Sport':
                     sportEvents.push(event);
                     break;
                   case 'Chill-out':
