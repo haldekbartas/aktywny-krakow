@@ -331,7 +331,7 @@ function MapController ($scope, $location, eventRepository) {
 
 
             $scope.doCheckEvent(snap, eventObj);
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 
 
 
@@ -356,14 +356,53 @@ function MapController ($scope, $location, eventRepository) {
 
 
 
-    }
+    };
+
+
+
+    //pozwala na zczytanie danych użytkownika
+    $scope.userData = function() {
+        var user = firebase.auth().currentUser;
+        user.providerData.forEach(function (profile) {
+          $scope.loginName = profile.displayName;
+          $(".userName").text("Witaj! " + $scope.loginName);
+
+
+          $scope.img = profile.photoURL;
+          $(".userImg").attr("src", $scope.img);
+    })};
+
+
+
 
 
     if(window.location.pathname == "/home") {
+        try {
+            $scope.userData();
+        }
+        catch(err) {
+
+
+
+
+
+
+
+            console.log("error to get user info, please go to another card on bar menu");
+
+        }
+
         $scope.mapConfig("mapHome");
         $scope.heightConfig(".mapHome");
     }
     else if(window.location.pathname == "/panel") {
+        try {
+            $scope.userData();
+        }
+        catch(err) {
+
+            console.log("error to get user info, please go to another card on bar menu");
+        }
         $scope.mapConfig("mapPanel");
         $scope.heightConfig(".mapPanel");
     }

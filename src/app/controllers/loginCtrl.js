@@ -1,3 +1,4 @@
+import $ from 'jquery';
 // kontroler logowania
 function LoginController ($scope, $location, authorization) {
 
@@ -12,21 +13,24 @@ function LoginController ($scope, $location, authorization) {
 
 //logowanie i autoryzacja za pomocą google
     $scope.loginWithGoogle = function() {
+
       authorization.handleGoogleAuth()
       .then((user) => {
+
         console.log("elo");
         console.log("poszło");
-        window.location.href="/home";
-
+        window.location.href="/home"
       })
       .catch((error) => {
         alert(error);
-      })
+      });
+
     };
 
 //logowanie i autoryzacja za pomocą facebooka
 
     $scope.loginWithFacebook = function() {
+
       authorization.handleFacebookAuth()
       .then((user) => {
         console.log("elo");
@@ -53,6 +57,11 @@ function LoginController ($scope, $location, authorization) {
         alert(error);
       })
      };
+
+
+
+
+
   /* $scope.login = function () {
 
         $location.path('home');
