@@ -377,32 +377,12 @@ function MapController ($scope, $location, eventRepository) {
 
 
     if(window.location.pathname == "/home") {
-        try {
-            $scope.userData();
-        }
-        catch(err) {
-
-
-
-
-
-
-
-            console.log("error to get user info, please go to another card on bar menu");
-
-        }
 
         $scope.mapConfig("mapHome");
         $scope.heightConfig(".mapHome");
     }
     else if(window.location.pathname == "/panel") {
-        try {
-            $scope.userData();
-        }
-        catch(err) {
 
-            console.log("error to get user info, please go to another card on bar menu");
-        }
         $scope.mapConfig("mapPanel");
         $scope.heightConfig(".mapPanel");
     }
