@@ -113,13 +113,6 @@ var app = angular.module(MODULE_NAME, [ngRoute, ngAnimate, angularCSS])
 
 
         user.providerData.forEach(function (profile) {
-<<<<<<< HEAD
-
-          $(".userName").text("Witaj! " + profile.displayName);
-
-
-
-=======
             
             if(profile.displayName){
                   $(".userName").text("Witaj, " + profile.displayName);
@@ -127,11 +120,10 @@ var app = angular.module(MODULE_NAME, [ngRoute, ngAnimate, angularCSS])
             else{
                 $(".userName").text("Witaj, " + profile.email);
             }
-          
-          
-          
-          
->>>>>>> af91fd3cbe5d37f67e328d4a11494af4bc4c88cf
+
+
+
+
           $(".userImg").attr("src", profile.photoURL);
         });
         } else {
