@@ -106,10 +106,10 @@ input[type=submit] {
     float: right;
 }
 .navimg{
-    min-width: 64px;
-    max-width: 80px;
-    min-height: 64px;
-    max-height: 80px;
+    min-width: auto;
+    max-width: 60px;
+    min-height: auto;
+    max-height: 60px;
 
 }
 .addEvent {

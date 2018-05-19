@@ -102,7 +102,7 @@ var app = angular.module(MODULE_NAME, [ngRoute, ngAnimate, angularCSS])
   .controller('MapController', ['$scope', '$location', 'eventRepository','userContext', mapCtlr])
 
   app.run(function($location) {
-    
+
     firebase.auth().onAuthStateChanged(function(user) {
         console.log(user);
         console.log('i am done')
@@ -110,14 +110,14 @@ var app = angular.module(MODULE_NAME, [ngRoute, ngAnimate, angularCSS])
             userContext.authenticate(user);
             console.log(user);
             //pozwala na zczytanie danych użytkownika
-    
-            
+
+
         user.providerData.forEach(function (profile) {
-          
-          $(".userName").text("Jesteś zalogowany jako " + profile.displayName);
-          
-          
-          
+
+          $(".userName").text("Witaj! " + profile.displayName);
+
+
+
           $(".userImg").attr("src", profile.photoURL);
         });
         } else {

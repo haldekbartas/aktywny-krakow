@@ -63,3 +63,7 @@ input[disabled="disabled"] {
 }
 
 /*drugie style*/
+
+.bg-image {
+  background: url(../public/img/logo2.png) center no-repeat;
+}
