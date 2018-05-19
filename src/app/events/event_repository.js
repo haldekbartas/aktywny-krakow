@@ -13,7 +13,6 @@ var EventRepository = function(db, currentUserContext) {
             
             db.ref('users/' + authorId + '/' + id).set(event);
             db.ref('events/' + id).set(event);
-            
         },
         getUserId: function() {
             return currentUserContext.getCurrentUserId();

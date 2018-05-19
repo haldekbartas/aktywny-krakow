@@ -102,6 +102,7 @@ function MapController ($scope, $location, eventRepository) {
         $scope.event.time = $scope.event.dateTimeEvent.getHours() + ":" +
         $scope.event.dateTimeEvent.getMinutes() + " " + ampm;
         
+        console.log("addr " + $scope.event.address);
         if($scope.event.personsQuantityEvent < 1) {
             alert("W wydarzeniu wziąć udział conajmniej jedna osoba");
         }
@@ -330,7 +331,7 @@ function MapController ($scope, $location, eventRepository) {
             
             
             $scope.doCheckEvent(snap, eventObj);
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            
             
             
             
@@ -356,13 +357,27 @@ function MapController ($scope, $location, eventRepository) {
         
         
     }
-    
+    //pozwala na zczytanie danych użytkownika
+    $scope.userData = function() {
+        var user = firebase.auth().currentUser;
+        user.providerData.forEach(function (profile) {
+          console.log("  Namee:! " + profile.displayName);
+          $(".userName").text("Jesteś zalogowany jako " + profile.displayName);
+          $scope.zalogowany = profile.displayName;
+          console.log($scope.zalogowany);
+          $scope.img = profile.photoURL;
+          $(".userImg").attr("src", profile.photoURL);
+    })};
+
+
     
     if(window.location.pathname == "/home") {
+        $scope.userData();
         $scope.mapConfig("mapHome");
         $scope.heightConfig(".mapHome");
     }
     else if(window.location.pathname == "/panel") {
+        $scope.userData();
         $scope.mapConfig("mapPanel");
         $scope.heightConfig(".mapPanel");
     }

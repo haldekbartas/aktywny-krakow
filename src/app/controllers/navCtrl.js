@@ -16,15 +16,8 @@ function NavCtrl($route, $routeParams, $location, $scope) {
           console.log(error);
       });
     }
-    //pozwala na zczytanie danych użytkownika
-    setTimeout(function(){
-      var user = firebase.auth().currentUser;
-      user.providerData.forEach(function (profile) {
-        console.log("  Name: " + profile.displayName);
-        $scope.zalogowany = profile.displayName;
-        console.log($scope.zalogowany);
-        $scope.img = profile.photoURL;
-      })}, 1000);
+    
+    
 }
 
 export default ['$route', '$routeParams', '$location', '$scope', NavCtrl];
