@@ -121,8 +121,14 @@ var app = angular.module(MODULE_NAME, [ngRoute, ngAnimate, angularCSS])
     
             
         user.providerData.forEach(function (profile) {
+            
+            if(profile.displayName){
+                  $(".userName").text("Witaj, " + profile.displayName);
+            }
+            else{
+                $(".userName").text("Witaj, " + profile.email);
+            }
           
-          $(".userName").text("Jesteś zalogowany jako " + profile.displayName);
           
           
           
