@@ -108,8 +108,12 @@ function MapController ($scope, $location, eventRepository) {
         else {
             eventRepository.addEvent($scope.event);
         }
+<<<<<<< HEAD
         alert("Twoje wydarzenie zostało zamieszczone na tablicy Aktywnego Krakowa!");
         $location.path('/home');
+=======
+
+>>>>>>> 02327d949a99908e07c033107079b1cefda93621
 
     };
 
