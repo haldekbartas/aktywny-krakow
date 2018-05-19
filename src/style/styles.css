@@ -29,7 +29,7 @@ main {
 
 
 main.ng-enter {
-    
+
     transition: 1s linear all;
     opacity: 0;
 }
@@ -68,7 +68,7 @@ input[disabled="disabled"] {
     position: fixed;
     width: 50%;
     right: 0px;
-    
+
 }
 .map {
     width: 100%;
@@ -218,10 +218,10 @@ input[type=submit] {
 .type {
     padding-left:2vw;
     margin-top: 0.1vh;
-    
+
 }
 
-.sportIcon{ 
+.sportIcon{
   background-image: url('../public/img/bike.png');
   position:absolute;
   background-size: 50px 50px;
@@ -239,7 +239,7 @@ input[type=submit] {
     display: inline-block;
 }
 
-.chillIcon{ 
+.chillIcon{
   background-image: url('../public/img/friends.png');
   position:absolute;
   background-size: 50px 50px;
@@ -247,7 +247,7 @@ input[type=submit] {
   padding: 50px 50px;
     right:3px;
     }
-    
+
 .description{
         padding-left:2vw;
         margin-bottom: 2vh;
@@ -377,10 +377,9 @@ p {
         display:block;
         width:100%;
           }
-    
 
-    
 
-  
+
+
+
 }
-
