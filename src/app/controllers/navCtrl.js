@@ -15,7 +15,8 @@ function NavCtrl($route, $routeParams, $location, $scope) {
       }).catch(function(error) {
           console.log(error);
       });
-    }
+    };
+    
     
     
 }

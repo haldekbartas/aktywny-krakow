@@ -356,28 +356,45 @@ function MapController ($scope, $location, eventRepository) {
         
         
         
-    }
+    };
+
+    
+
     //pozwala na zczytanie danych użytkownika
     $scope.userData = function() {
         var user = firebase.auth().currentUser;
         user.providerData.forEach(function (profile) {
-          console.log("  Namee:! " + profile.displayName);
-          $(".userName").text("Jesteś zalogowany jako " + profile.displayName);
-          $scope.zalogowany = profile.displayName;
-          console.log($scope.zalogowany);
+          $scope.loginName = profile.displayName;
+          $(".userName").text("Jesteś zalogowany jako " + $scope.loginName);
+          
+          
           $scope.img = profile.photoURL;
-          $(".userImg").attr("src", profile.photoURL);
+          $(".userImg").attr("src", $scope.img);
     })};
+      
 
 
     
     if(window.location.pathname == "/home") {
-        $scope.userData();
+        try {
+            $scope.userData();
+        }
+        catch(err) {
+            
+            console.log("error to get user info, please go to another card on bar menu");
+            
+        }
+        
         $scope.mapConfig("mapHome");
         $scope.heightConfig(".mapHome");
     }
     else if(window.location.pathname == "/panel") {
-        $scope.userData();
+        try {
+            $scope.userData();
+        }
+        catch(err) {
+            console.log("error to get user info, please go to another card on bar menu");
+        }
         $scope.mapConfig("mapPanel");
         $scope.heightConfig(".mapPanel");
     }

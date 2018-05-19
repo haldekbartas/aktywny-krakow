@@ -28,7 +28,6 @@ import '../style/loginstyle.css';
 
 function appConfig ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
-
     //route, ktory pozwala nam na zmiane ekranów i przypisuje kontrolery do danych ekranów
     $routeProvider
         .when('/home', {
