@@ -8,6 +8,7 @@ import mapCtlr from './controllers/mapCtrl';
 import EventRepository from './events/event_repository';
 import CurrentUserContext from './system/user_context';
 import Authorization from './system/authorization';
+import $ from 'jquery';
 
 import '../style/styles.css';
 import '../style/loginstyle.css';
@@ -102,6 +103,7 @@ var app = angular.module(MODULE_NAME, [ngRoute, ngAnimate, angularCSS])
   .controller('MapController', ['$scope', '$location', 'eventRepository','userContext', mapCtlr])
 
   app.run(function($location) {
+    
     firebase.auth().onAuthStateChanged(function(user) {
         console.log(user);
         console.log('i am done')
@@ -109,6 +111,17 @@ var app = angular.module(MODULE_NAME, [ngRoute, ngAnimate, angularCSS])
             userContext.authenticate(user);
             $location.path("/home");
             console.log(user);
+            //pozwala na zczytanie danych użytkownika
+    
+            
+        user.providerData.forEach(function (profile) {
+          
+          $(".userName").text("Jesteś zalogowany jako " + profile.displayName);
+          
+          
+          
+          $(".userImg").attr("src", profile.photoURL);
+        });
         } else {
           userContext.clear();
           console.log("it should redirect to /login");

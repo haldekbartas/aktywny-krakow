@@ -359,7 +359,22 @@ function MapController ($scope, $location, eventRepository) {
     };
 
     
-
+    //logowanie za pomocą google
+    $scope.loginWithGoogle = function() {
+      
+        authorization.handleGoogleAuth()
+        .then((user) => {
+        
+          console.log("elo");
+          window.location.href="/home";
+          console.log("poszło");
+          
+        })
+        .catch((error) => {
+          alert(error);
+        });
+        
+      };
     //pozwala na zczytanie danych użytkownika
     $scope.userData = function() {
         var user = firebase.auth().currentUser;
@@ -381,6 +396,12 @@ function MapController ($scope, $location, eventRepository) {
         }
         catch(err) {
             
+            
+            
+            
+            
+            
+            
             console.log("error to get user info, please go to another card on bar menu");
             
         }
@@ -393,6 +414,7 @@ function MapController ($scope, $location, eventRepository) {
             $scope.userData();
         }
         catch(err) {
+            
             console.log("error to get user info, please go to another card on bar menu");
         }
         $scope.mapConfig("mapPanel");
