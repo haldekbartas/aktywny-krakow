@@ -8,4 +8,7 @@ Single Page Application lecture project based on fb activity group.
 - `npm start`
 2. (Windows) go to system32/drivers/etc/hosts.ics
 - `add record "127.0.0.1 aktywny-krakow.pl"`
-- `go to http://127.0.0.1:8080`
+- `go to aktywny-krakow.pl`
+
+###(alternatives)
+- `otherwise http://127.0.0.1:8080`

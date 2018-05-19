@@ -12,6 +12,7 @@ import Authorization from './system/authorization';
 import '../style/styles.css';
 import '../style/loginstyle.css';
 
+
 // let app = () => {
 //   return {
 //     template: require('./app.html'),
@@ -51,16 +52,8 @@ function appConfig ($routeProvider, $locationProvider) {
 
 const MODULE_NAME = 'app';
 
-var config = {
-    apiKey: "AIzaSyB9Is-rNsWgM-V1EexcJQeq0babWrO_xYk",
-    authDomain: "aktywny-krakow-ae725.firebaseapp.com",
-    databaseURL: "https://aktywny-krakow-ae725.firebaseio.com",
-    projectId: "aktywny-krakow-ae725",
-    storageBucket: "aktywny-krakow-ae725.appspot.com",
-    messagingSenderId: "525000600389"
-  };
-
-firebase.initializeApp(config);
+//inicjalizacja API firebase z folderu
+firebase.initializeApp(fileconf);
 
 
 const userContext = new CurrentUserContext();
@@ -108,11 +101,10 @@ var app = angular.module(MODULE_NAME, [ngRoute, ngAnimate, angularCSS])
         console.log('i am done')
         if (user) {
             userContext.authenticate(user);
-            $location.path("/home");
             console.log(user);
         } else {
           userContext.clear();
-          console.log("it should redirect to /login");
+          console.log("redirect to login, please just log in and welcome on board to adventure in Cracow");
           if ((window.location.pathname != "/login")) {
             window.location.href = "/login";
           };

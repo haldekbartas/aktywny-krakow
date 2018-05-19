@@ -2,7 +2,7 @@
 function LoginController ($scope, $location, authorization) {
 
 //logowanie za pomocą adresu email i hasła
- // przypisanie wartości z pól input do
+ // przypisanie wartości z pól input do zmiennych w modelu
 
     let loginCommand = {
        email: "",
@@ -10,13 +10,13 @@ function LoginController ($scope, $location, authorization) {
      }
       $scope.user = loginCommand;
 
-//logowanie za pomocą google
+//logowanie i autoryzacja za pomocą google
     $scope.loginWithGoogle = function() {
       authorization.handleGoogleAuth()
       .then((user) => {
         console.log("elo");
-        window.location.href="/home";
         console.log("poszło");
+        window.location.href="/home";
 
       })
       .catch((error) => {
@@ -24,7 +24,7 @@ function LoginController ($scope, $location, authorization) {
       })
     };
 
-//logowanie za pomocą facebooka
+//logowanie i autoryzacja za pomocą facebooka
 
     $scope.loginWithFacebook = function() {
       authorization.handleFacebookAuth()

@@ -8,7 +8,10 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <base href="/">
+<!--  -->
+
+<base href="/">
+  <!--<script type="text/javascript" src="/"></script>-->
   <!--   firebase  -->
 <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
 
@@ -16,9 +19,11 @@
 <body>
   <header ng-controller="NavController as nav" ng-include="'header.html'" ng-hide="isActive('/login')">
   </header>
+
   <main ng-view></main>
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvj7Nvd_duZVW-UjhdvE2pRpfh_2fdZcU"></script>
+  <script type="text/javascript" src="fileconf.js"></script>
 
 </body>
 </html>
