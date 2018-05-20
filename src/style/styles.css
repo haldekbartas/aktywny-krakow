@@ -55,6 +55,12 @@ input[disabled="disabled"] {
 
 /*drugie style*/
 
+.topleft {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    font-size: 18px;
+}
 .panel {
     position: relative;
     max-height:92vh;
@@ -242,7 +248,7 @@ input[type=submit] {
     display: inline-block;
     margin-right: 10px;
     border-radius: 50%;
-    
+
 }
 .userName {
     display: inline-block;
