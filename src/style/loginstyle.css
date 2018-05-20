@@ -61,9 +61,3 @@ input[disabled="disabled"] {
     opacity: 0.5;
     cursor: not-allowed !important;
 }
-
-/*drugie style*/
-
-.bg-image {
-  background: url(../public/img/navbar-logo.png) center no-repeat;
-}
