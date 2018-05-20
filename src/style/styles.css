@@ -83,6 +83,9 @@ input[disabled="disabled"] {
     height: 8vh;
     color: #57b74e;
 }
+.navtoggler{
+  z-index: 1;
+}
 /*w3c styling*/
 
 input[type=text],
