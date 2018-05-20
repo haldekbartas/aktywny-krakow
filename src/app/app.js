@@ -50,6 +50,7 @@ function appConfig ($routeProvider, $locationProvider) {
             template: require('./views/stats.html'),
             controller: 'StatsController'
         })
+
         .otherwise({
             redirectTo: '/login'
         });
@@ -113,7 +114,7 @@ var app = angular.module(MODULE_NAME, [ngRoute, ngAnimate, angularCSS])
 
 
         user.providerData.forEach(function (profile) {
-            
+
             if(profile.displayName){
                   $(".userName").text("Witaj, " + profile.displayName);
             }
