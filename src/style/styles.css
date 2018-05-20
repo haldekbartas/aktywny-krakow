@@ -227,13 +227,13 @@ input[type=submit] {
     display: inline-block;
     font-weight: bold;
     font-size:3vh;
-    padding-left:2vw;
+    padding-left:1vw;
     color:#11742D;
 }
 .type {
-    padding-left:2vw;
+    padding-left:1vw;
     margin-top: 0.1vh;
-
+    color: dimgray;
 }
 
 .sportIcon{
@@ -270,7 +270,7 @@ input[type=submit] {
 .description{
         padding-left:2vw;
         margin-bottom: 2vh;
-        margin-top: 1vh;
+        margin-top: 2vh;
         overflow: auto;
         max-height:13vh;
         max-width: 40vw;
@@ -302,6 +302,7 @@ p {
     position: relative;
     width: 90%;
     margin: 2vh auto;
+    padding-left:1vw;
     background-color:#F6F6F6;
      background-color:#F9F9F9;
     box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.6);
@@ -336,15 +337,24 @@ p {
 }
 .rowHeader{
     border-radius: 5%;
-     border-bottom: 4px outset  #4CAF50;
-     width:99%;
+    border-bottom: 4px outset  #4CAF50;
+    width:100%;
+    margin: 0 auto;
 }
 
 .statsHeader{
     font-size:5vh;
     margin: 10vh auto;
-width:100%;
-text-align:center;
+    width:100%;
+    text-align:center;
+}
+
+.navbar-brand > img {
+    height: 50px;
+    width: auto;
+    margin: 0 auto;
+    -o-object-fit: contain;
+    object-fit: contain;
 }
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
