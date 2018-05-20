@@ -236,7 +236,7 @@ input[type=submit] {
     display: inline-block;
     margin-right: 10px;
     border-radius: 50%;
-    
+
 }
 .userName {
     display: inline-block;
@@ -332,6 +332,14 @@ p {
     margin: 10vh auto;
     width:100%;
     text-align:center;
+}
+
+.navbar-brand > img {
+    height: 50px;
+    width: auto;
+    margin: 0 auto;
+    -o-object-fit: contain;
+    object-fit: contain;
 }
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
