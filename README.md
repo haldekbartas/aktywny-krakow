@@ -1,5 +1,5 @@
 # Aktywny Kraków
-
+Project page: https://haldekbartas.github.io/aktywny-krakow/
 ### Opis projektu:
    
    Aplikacja Aktywny Kraków ma za zadanie zrzeszać ludzi którzy szukają towarzystwa do spędzenia wolnego czasu w Krakowie. Użytkownik loguje się do aplikacji poprzez profil społecznościowy (Google lub Facebook). Zalogowany użytkownik ma możliwość przeglądać i dołączać do  aktualnie dostępnych wydarzeń na stronie głównej, utworzonych wczesniej przez innych użytkowników w kategoriach: Sport lub Chill. Każdy użytkownik może również dodawać nowe wydarzenia w Panelu Użytkownika. Wydarzenia składają się z: miejsca, tematu, opisu, kategorii, godziny rozpoczęcia oraz liczby dostępnych miejsc.
